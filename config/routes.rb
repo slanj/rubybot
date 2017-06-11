@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   
-  get 'webhook' => 'webhook#view'
+  get 'webhook' => 'webhook#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
