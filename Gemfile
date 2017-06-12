@@ -16,6 +16,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer',  platforms: :ruby
 
 gem 'api-ai-ruby'
+gem 'cowsay'
+gem 'rails_db'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
