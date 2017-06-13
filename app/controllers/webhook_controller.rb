@@ -11,8 +11,8 @@ class WebhookController < ApplicationController
     format.html # show.html.erb
     format.json { 
         response.headers['Content-type'] = 'application/json'
-        render json: {speech: "Hello",
-        displayText: "Hello",
+        render json: {speech: "OSD Вам все расскажет",
+        displayText: "OSD Вам все расскажет",
         data: "",
         contextOut: [],
         source: "webhook"}}
