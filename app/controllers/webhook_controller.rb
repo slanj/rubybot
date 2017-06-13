@@ -14,7 +14,7 @@ class WebhookController < ApplicationController
         render json: {speech: "Hello",
         displayText: "Hello",
         data: "",
-        contextout: [],
+        contextOut: [],
         source: "webhook"}}
     end
   end
