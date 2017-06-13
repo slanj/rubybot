@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140707111715) do
 
   create_table "terms", force: :cascade do |t|
     t.string "name",      limit: 200, null: false
-    t.text   "address"
+    t.text   "description"
     t.text   "reference"
     t.text   "synonyms"
   end
