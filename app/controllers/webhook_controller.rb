@@ -11,7 +11,9 @@ class WebhookController < ApplicationController
     #@term = Term.find(3)
     respond_to do |format|
     format.html # show.html.erb
-    format.json { render json: @response }
+    format.json { render json: {"speech": "Hello",
+        "displayText": "Hello",
+        "source": "RubyBot"}}
     end
   end
     
