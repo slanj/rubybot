@@ -10,6 +10,7 @@ class WebhookController < ApplicationController
     respond_to do |format|
     format.html # show.html.erb
     format.json { 
+        protect_from_forgery with: :null_session
         response.headers['Content-type'] = 'application/json'
         render json: {speech: "Hello",
         displayText: "Hello",
