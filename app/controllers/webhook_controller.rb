@@ -33,7 +33,7 @@ class WebhookController < ApplicationController
             end    
         end   
         response.headers['Content-type'] = 'application/json'
-        render json: {speech: @str,
+        render json: {speech: @rezult,
         displayText: @rezult,
         data: "",
         contextOut: [],
