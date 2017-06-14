@@ -36,7 +36,7 @@ class WebhookController < ApplicationController
             if @mydef
                 @rezult = @mydef["description"]
             else
-                @mydef = Term.where('name LIKE ?', "%#{@str}%") 
+                @rezult = Term.where('name LIKE ?', "%#{@str}%").first.description 
             end    
         end   
         response.headers['Content-type'] = 'application/json'
