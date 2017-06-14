@@ -10,12 +10,17 @@ class WebhookController < ApplicationController
     
     #Term.destroy_all
 
-    #csv_text = File.read('public/MarketingDictionary2-UTF8.csv')
+    #csv_text = File.read('public/MarketingDictionary3-UTF8.csv')
     #csv = CSV.parse(csv_text, :headers => true, :col_sep => ";")
     #csv.each do |row|
-    #Term.create!({name: row[0], description: row[1], reference: row[2], synonyms: row[3]}) end
+    #Term.create!({name: row[0], description: row[2], reference: row[3], synonyms: row[4]}) end
       
     #Term.create(name: "ремаркетинг", description: "систематический показ одних и тех же рекламных баннеров (но на разных сайтах) посетителю, который ранее проявил интерес к продукту или услугам рекламодателя.", reference: "https://kaplunoff.com/blog/marketing-i-prodazhi/237-marketing-words", synonyms: "ремаркетинга, ремаркетингу, remarketing")
+    
+    #Term.all.each do |term|
+    #  term.update_attributes :name => term.name.mb_chars.downcase
+    #end
+    
 
     
     #@term = Term.find(3)
@@ -26,14 +31,14 @@ class WebhookController < ApplicationController
         @rezult = "OSD Вам все расскажет"
         if params["result"]
             @var = params["result"]["parameters"]["terms"]
-            @str = @var.encode("UTF-8").to_str
-            @mydef = Term.where(name: @str).first
+            @str = @var.to_s
+            @mydef = Term.where(name: @str).first 
             if @mydef
                 @rezult = @mydef["description"]
             end    
         end   
         response.headers['Content-type'] = 'application/json'
-        render json: {speech: @rezult,
+        render json: {speech: @str,
         displayText: @rezult,
         data: "",
         contextOut: [],
