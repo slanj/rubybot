@@ -31,7 +31,7 @@ class WebhookController < ApplicationController
         @rezult = "OSD Вам все расскажет"
         if params["result"]
             @var = params["result"]["parameters"]["terms"]
-            @str = @var.to_s
+            @str = @var.to_s.chomp
             @mydef = Term.where(name: @str).first 
             if @mydef
                 @rezult = @mydef["description"]
