@@ -23,7 +23,7 @@ default: &default
 
 development:
   adapter: postgresql 
-  encoding: SQL_ASCII 
+  encoding: UTF-8 
   database: botbase2
   pool: 5 
   username: ubuntu 
