@@ -19,11 +19,12 @@ class WebhookController < ApplicationController
     respond_to do |format|
     format.html # show.html.erb
     format.json { 
+        @rezult = "OSD Вам все расскажет"
         if params["result"]
             @var = params["result"]["parameters"]["terms"]
-        end    
-        @mydef = Term.where(name: @var).first
-        @rezult = @mydef["description"]
+            @mydef = Term.where(name: @var).first
+            @rezult = @mydef["description"]
+        end       
         response.headers['Content-type'] = 'application/json'
         render json: {speech: @rezult,
         displayText: @rezult,
