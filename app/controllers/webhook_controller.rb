@@ -13,7 +13,7 @@ class WebhookController < ApplicationController
     #csv_text = File.read('public/MarketingDictionary3-UTF8.csv')
     #csv = CSV.parse(csv_text, :headers => true, :col_sep => ";")
     #csv.each do |row|
-    #Term.create!({name: row[0], description: row[2], reference: row[3], synonyms: row[4]}) end
+    #Term.create!({name: row[0].chomp, description: row[2], reference: row[3], synonyms: row[4]}) end
       
     #Term.create(name: "ремаркетинг", description: "систематический показ одних и тех же рекламных баннеров (но на разных сайтах) посетителю, который ранее проявил интерес к продукту или услугам рекламодателя.", reference: "https://kaplunoff.com/blog/marketing-i-prodazhi/237-marketing-words", synonyms: "ремаркетинга, ремаркетингу, remarketing")
     
@@ -35,6 +35,8 @@ class WebhookController < ApplicationController
             @mydef = Term.where(name: @str).first 
             if @mydef
                 @rezult = @mydef["description"]
+            else
+                @mydef = Term.where('name LIKE ?', "%#{@str}%") 
             end    
         end   
         response.headers['Content-type'] = 'application/json'
