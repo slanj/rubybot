@@ -1,3 +1,4 @@
+#encoding: utf-8
 class WebhookController < ApplicationController
     # GET /welcome
   skip_before_action :verify_authenticity_token, only: [:index]    
@@ -22,9 +23,12 @@ class WebhookController < ApplicationController
         @rezult = "OSD Вам все расскажет"
         if params["result"]
             @var = params["result"]["parameters"]["terms"]
-            @mydef = Term.where(name: @var).first
-            @rezult = @mydef["description"]
-        end       
+            @str = @var.encode("UTF-8").to_str
+            @mydef = Term.where(name: @str).first
+            if @mydef
+                @rezult = @mydef["description"]
+            end    
+        end    
         response.headers['Content-type'] = 'application/json'
         render json: {speech: @rezult,
         displayText: @rezult,
