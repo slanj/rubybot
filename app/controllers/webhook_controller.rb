@@ -7,6 +7,7 @@ class WebhookController < ApplicationController
     
     require 'csv'
     require 'json'
+    require 'yahoo_weather'
     
     #Term.destroy_all
 
@@ -23,22 +24,33 @@ class WebhookController < ApplicationController
     
 
     
-    #@term = Term.find(3)
+
     respond_to do |format|
     format.html # show.html.erb
     format.json { 
         @var = "ремаркетинг"
         @rezult = "OSD Вам все расскажет"
-        if params["result"]
-            @var = params["result"]["parameters"]["terms"]
-            @str = @var.to_s.chomp
-            @mydef = Term.where(name: @str).first 
-            if @mydef
-                @rezult = @mydef["description"]
-            else
-                @rezult = Term.where('name LIKE ?', "%#{@str}%").first.description 
+        if params["result"] 
+            if params["result"]["action"] == "termdef"
+                @var = params["result"]["parameters"]["terms"]
+                @str = @var.to_s.chomp
+                @mydef = Term.where(name: @str).first 
+                if @mydef
+                    @rezult = @mydef["description"]
+                else
+                    @rezult = Term.where('name LIKE ?', "%#{@str}%").first.description 
+                end    
+            end   
+            if params["result"]["action"] == "yahooWeatherForecast"
+                @var = params["result"]["parameters"]["geo-city"]
+                @str = @var.to_s.chomp
+                client = YahooWeather::Client.new
+                #forecast = client.fetch_by_location('New York')
+                forecast = client.fetch(924938)
+                celsius = (forecast.condition.temp.to_i-32)*5/9 
+                @rezult = "Температура " + celsius.to_s + "C" 
             end    
-        end   
+        end
         response.headers['Content-type'] = 'application/json'
         render json: {speech: @rezult,
         displayText: @rezult,

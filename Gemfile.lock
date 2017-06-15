@@ -190,6 +190,8 @@ GEM
       unf_ext
     unf_ext (0.0.7.4)
     unicode-display_width (1.2.1)
+    yahoo_weather (1.2.0)
+      rails (>= 4.1.0)
 
 PLATFORMS
   ruby
@@ -210,6 +212,7 @@ DEPENDENCIES
   spring
   turbolinks
   uglifier (>= 1.3.0)
+  yahoo_weather
 
 RUBY VERSION
    ruby 2.3.0p0
