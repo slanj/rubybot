@@ -1,3 +1,5 @@
+Minimal Ruby Bot backend for api.ai service based on Heroku Starter Application
+
 # ruby-getting-started
 
 A barebones Rails app, which can easily be deployed to Heroku.
