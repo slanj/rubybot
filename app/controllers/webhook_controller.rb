@@ -22,9 +22,6 @@ class WebhookController < ApplicationController
     #  term.update_attributes :name => term.name.mb_chars.downcase
     #end
     
-
-    
-
     respond_to do |format|
     format.html # show.html.erb
     format.json { 
@@ -48,7 +45,7 @@ class WebhookController < ApplicationController
                 #forecast = client.fetch_by_location('New York')
                 forecast = client.fetch(924938)
                 celsius = (forecast.condition.temp.to_i-32)*5/9 
-                @rezult = "Температура " + celsius.to_s + "C" 
+                @rezult = "Температура " + celsius.to_s + "C"
             end    
         end
         response.headers['Content-type'] = 'application/json'
