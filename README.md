@@ -11,8 +11,8 @@ This application support the [Getting Started with Ruby on Heroku](https://devce
 Make sure you have Ruby installed.  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
 
 ```sh
-$ git clone git@github.com:heroku/ruby-getting-started.git
-$ cd ruby-getting-started
+$ git clone git@github.com/slanj/rubybot.git
+$ cd rubybot
 $ bundle install
 $ bundle exec rake db:create db:migrate
 $ heroku local
